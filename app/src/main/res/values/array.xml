@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="shop_type">
+        <item >편의점</item>
+        <item >PC방</item>
+    </string-array>
+    <string-array name="convenience_vendor">
+        <item >7Eleven</item>
+        <item >CU</item>
+        <item >GS25</item>
+        <item >Ministop</item>
+        <item >편의점</item>
+    </string-array>
+    <string-array name="pc_vendor">
+        <item >아이센스</item>
+        <item >샹떼</item>
+        <item >PC방</item>
+    </string-array>
+</resources>
