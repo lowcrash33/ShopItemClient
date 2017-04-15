@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.Network.NetworkTask;
 import com.VO.Shop;
+import com.common.Scan;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +82,7 @@ public class ShopDialog extends Dialog {
                 else {
                     shop = new Shop(name, lat, lng, shop_type, edittext_shop_info.getText().toString(), shop_vendor);
 
-                    NetworkTask networkTask = new NetworkTask(context);
+                    NetworkTask networkTask = new NetworkTask(context, Scan.shopAdd);
 
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("shop_name", name);

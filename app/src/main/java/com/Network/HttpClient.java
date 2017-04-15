@@ -1,4 +1,6 @@
 package com.Network;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,6 +71,7 @@ public class HttpClient {
 
     private void setRequestMethod(HttpURLConnection connection) {
         try {
+            Log.d("HTTP", "Request method : " + builder.getMethod());
             connection.setRequestMethod(builder.getMethod());
         } catch (ProtocolException e) {
             e.printStackTrace();

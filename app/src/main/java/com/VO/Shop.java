@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class Shop {
-    private int shop_id;
+    private String shop_id;
     private String shop_name;
     private double shop_lat;
     private double shop_lng;
@@ -24,11 +24,21 @@ public class Shop {
         this.shop_info = shop_info;
         this.shop_vendor = shop_vendor;
     }
+    public Shop(String shop_id, String shop_name, double shop_lat, double shop_lng, String shop_type, Date shop_time , String shop_info, String shop_vendor) {
+        this.shop_id = shop_id;
+        this.shop_name = shop_name;
+        this.shop_lat = shop_lat;
+        this.shop_lng = shop_lng;
+        this.shop_type = shop_type;
+        this.shop_time = shop_time;
+        this.shop_info = shop_info;
+        this.shop_vendor = shop_vendor;
+    }
 
-    public int getShop_id() {
+    public String getShop_id() {
         return shop_id;
     }
-    public void setShop_id(int shop_id) {
+    public void setShop_id(String shop_id) {
         this.shop_id = shop_id;
     }
     public String getShop_name() {

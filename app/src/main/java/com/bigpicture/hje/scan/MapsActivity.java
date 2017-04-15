@@ -13,12 +13,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static com.common.Scan.lat;
+import static com.common.Scan.lng;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap; //지도 자체에 대한 객체
     private MarkerOptions marker; //마커라고 화면에 동그란거 뜨는거
     private LatLng latlng; //위도, 경도 값을 가진 구조체 정도로 보면됨
-    private Double lat= 37.491,lng=127.020;
     private ShopDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         marker = new MarkerOptions();
         //위도, 경도 (해커톤 장소)
         latlng = new LatLng( lat,lng);
-
         dialog = new ShopDialog(this);
     }
 
@@ -44,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         marker.position(latlng).title("Select shop position");
-        mMap.addMarker(marker);
+        mMap.addMarker(marker).showInfoWindow();
         //해커톤 행사장으로 이동, 지도 확대를 15로
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(latlng, 15) );
 
@@ -81,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 });
                 dialog.show();
-                return false;
+                return true;
             }
         });
     }
