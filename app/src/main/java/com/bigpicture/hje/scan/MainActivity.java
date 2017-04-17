@@ -3,6 +3,7 @@ package com.bigpicture.hje.scan;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -12,11 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
+
+import static com.common.Scan.awsUrl;
+import static com.common.Scan.localUrl;
+import static com.common.Scan.selectedUrl;
 
 public class MainActivity extends AppCompatActivity {
     //context 액티비티랑 같은 거라고 보면됨
     private Context context;
+    private RadioButton local, aws;
+    private EditText editText_server;
+    private ItemDialog dialog;
 
     //Override는 extends AppCompatActivity 상속했을때 꼭 구현되어야 하는 함수로 자동 추가됨
     //모든 activity 코드는 onCreate함수에서 시작 C의 main함수라고 보면됨
@@ -28,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        editText_server = (EditText)findViewById(R.id.edittext_server);
+        local = (RadioButton) findViewById(R.id.local);
+        aws = (RadioButton) findViewById(R.id.aws);
+        local.setOnClickListener(optionOnClickListener);
+        aws.setOnClickListener(optionOnClickListener);
+        aws.setChecked(true);
+        editText_server.setText(awsUrl);
         //activity_main.xml 의 button_shop이라는 id의 버튼을 가져옴
         Button button_shop = (Button) findViewById(R.id.button_shop);
 
@@ -48,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 //바코드 화면에서 카메라 써야되는데 그전에 써도되는지 허락 받는거
                 //사용자가 이 앱에서 카메라 사용을 허락했는지 확인
                 if(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+                    /*Intent intent = new Intent("com.google.zxing.client.android.SCAN");
                     intent.putExtra("SCAN_MODE", "ALL");
-                    startActivityForResult(intent, 0);
+                    startActivityForResult(intent, 0);*/
+                    showItemDialog("8801155730994");
                 }else{
                     //사용자한테 카메라 쓸거냐고 물어보는거임
                     ActivityCompat.requestPermissions((Activity) context,new String[]{Manifest.permission.CAMERA},0);
@@ -68,6 +86,19 @@ public class MainActivity extends AppCompatActivity {
             } });
     }
 
+    RadioButton.OnClickListener optionOnClickListener
+            = new RadioButton.OnClickListener() {
+        public void onClick(View v) {
+            if(local.isChecked())
+                editText_server.setText(localUrl);
+            else if(aws.isChecked())
+                editText_server.setText(awsUrl);
+            else
+                editText_server.setText("select server");
+            selectedUrl = editText_server.getText().toString();
+        }
+    };
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 0) {
             //정상적으로 바코드 값을 가져왔으면
@@ -78,14 +109,27 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Barcode", "Scan result : "+scanCode);
                 //토스트라고 화면하단에 잠깐 보여주고 없어지는거. 바코드 숫자 확인. 간단히 무슨 값 확인할때 좋음
                 Toast.makeText (context, "Barcode : "+ scanCode, Toast.LENGTH_LONG).show();
-                showItemDialog();
+                showItemDialog(scanCode);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
 
-    private void showItemDialog() {
+    private void showItemDialog(String scanCode) {
+        dialog = new ItemDialog(context, scanCode);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dia) {
 
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dia) {
+                //dialog가 사라질때 액션
+            }
+        });
+        dialog.show();
     }
 }

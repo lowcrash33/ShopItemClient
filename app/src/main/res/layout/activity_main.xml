@@ -11,12 +11,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bigpicture.hje.scan.MainActivity">
 
+        <RadioGroup
+                 android:id="@+id/radio_server"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Local Server"
+                    />
+                <RadioButton
+                    android:id="@+id/aws"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="AWS Server"
+                    />
+        </RadioGroup>
+        <EditText
+            android:id="@+id/edittext_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="select server"
+            />
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <Button
             android:id="@+id/button_shop"
             android:layout_height="wrap_content"
@@ -35,5 +57,5 @@
             android:layout_width="match_parent"
             android:text="Shop 보기"
             />
-    </LinearLayout>
+
 </LinearLayout>

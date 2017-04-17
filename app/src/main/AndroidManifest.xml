@@ -84,7 +84,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bigpicture.hje.scan.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".ShopMapsActivity"
+            android:label="@string/title_activity_shop_maps"></activity>
     </application>
 
 </manifest>

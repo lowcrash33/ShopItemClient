@@ -16,4 +16,12 @@
         <item >샹떼</item>
         <item >PC방</item>
     </string-array>
+
+    <string-array name="item_type">
+        <item >술</item>
+        <item >음료</item>
+        <item >도시락</item>
+        <item >핸드폰</item>
+        <item >좌석</item>
+    </string-array>
 </resources>
