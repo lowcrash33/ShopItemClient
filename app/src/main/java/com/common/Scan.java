@@ -12,6 +12,7 @@ public class Scan {
 
     public static String shopAdd = "/shop/add";
     public static String shopScan = "/shop/scan";
+    public static String shopDelete = "/shop/delete";
     public static String shopScanByItem = "/shop/scanByItem";
     public static String stockUpdate = "/stock/update";
     public static String itemList = "/item/shopItemList";
@@ -28,7 +29,7 @@ public class Scan {
     public static final String HTTP_RESPONSE_OK = "OK";
     public static final String HTTP_RESPONSE_FAIL = "FAIL";
 
-    public static final int HTTP_ACTION_ADD = 0;
+    public static final int HTTP_ACTION_CMD = 0;
     public static final int HTTP_ACTION_SHOPLIST = 1;
     public static final int HTTP_ACTION_ITEMLIST = 2;
 }

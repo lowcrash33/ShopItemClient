@@ -65,7 +65,7 @@ public class NetworkTask extends AsyncTask<Map<String, String>, Integer, String>
     protected void onPostExecute(String s) {
         if(s != null) {
             if(s.equals(HTTP_RESPONSE_OK)) //등록을 하여 OK를 받는경우
-                Toast.makeText(context, "등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "요청이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             else { //특정 목록을 가져오는 경우
                 Intent i = new Intent();
                 if(action == HTTP_ACTION_SHOPLIST) {
