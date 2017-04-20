@@ -20,6 +20,8 @@ import com.common.Scan;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.common.Scan.HTTP_ACTION_ADD;
+
 /**
  * Created by Administrator on 2017-04-11.
  */
@@ -82,7 +84,7 @@ public class ShopDialog extends Dialog {
                 else {
                     shop = new Shop(name, lat, lng, shop_type, edittext_shop_info.getText().toString(), shop_vendor);
 
-                    NetworkTask networkTask = new NetworkTask(context, Scan.shopAdd);
+                    NetworkTask networkTask = new NetworkTask(context, HTTP_ACTION_ADD, Scan.shopAdd);
 
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("shop_name", name);

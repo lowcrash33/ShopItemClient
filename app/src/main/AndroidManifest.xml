@@ -36,7 +36,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -86,7 +85,8 @@
         </activity>
         <activity
             android:name=".ShopMapsActivity"
-            android:label="@string/title_activity_shop_maps"></activity>
+            android:label="@string/title_activity_shop_maps" />
+        <activity android:name=".ItemListActivity"></activity>
     </application>
 
 </manifest>

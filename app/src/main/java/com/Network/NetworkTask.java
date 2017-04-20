@@ -8,9 +8,13 @@ import android.widget.Toast;
 
 import java.util.Map;
 
+import static com.common.Scan.BR_ItemList;
 import static com.common.Scan.BR_ShopList;
+import static com.common.Scan.HTTP_ACTION_ITEMLIST;
+import static com.common.Scan.HTTP_ACTION_SHOPLIST;
 import static com.common.Scan.HTTP_RESPONSE_FAIL;
 import static com.common.Scan.HTTP_RESPONSE_OK;
+import static com.common.Scan.KEY_ItemList;
 import static com.common.Scan.KEY_ShopList;
 import static com.common.Scan.selectedUrl;
 
@@ -22,11 +26,12 @@ public class NetworkTask extends AsyncTask<Map<String, String>, Integer, String>
     private Context context;
     private int statusCode;
     private String funcURL;
+    private int action;
 
-    //Shop add
-    public NetworkTask(Context context, String funcURL){
+    public NetworkTask(Context context, int action, String funcURL){
         this.context = context;
         this.funcURL = funcURL;
+        this.action = action;
     }
 
     @Override
@@ -63,8 +68,13 @@ public class NetworkTask extends AsyncTask<Map<String, String>, Integer, String>
                 Toast.makeText(context, "등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             else { //특정 목록을 가져오는 경우
                 Intent i = new Intent();
-                i.putExtra(KEY_ShopList, s);
-                i.setAction(BR_ShopList);
+                if(action == HTTP_ACTION_SHOPLIST) {
+                    i.putExtra(KEY_ShopList, s);
+                    i.setAction(BR_ShopList);
+                }else if(action == HTTP_ACTION_ITEMLIST){
+                    i.putExtra(KEY_ItemList, s);
+                    i.setAction(BR_ItemList);
+                }
                 context.sendBroadcast(i);
             }
             if(s != null)
