@@ -15,7 +15,9 @@ public class Scan {
     public static String shopDelete = "/shop/delete";
     public static String shopScanByItem = "/shop/scanByItem";
     public static String stockUpdate = "/stock/update";
+
     public static String itemList = "/item/shopItemList";
+    public static String itemAdd = "/item/addItem";
     public static String itemImage = "/file?item_code=";
 
     public static Double lat= 37.491,lng=127.020; //해커톤 위,경도
@@ -25,6 +27,7 @@ public class Scan {
     public static final String BR_ItemList = "bigpicture.hje.scan.ITEM_LIST";
     public static final String KEY_ShopList = "SHOP_LIST";
     public static final String KEY_ItemList = "ITEM_LIST";
+    public static final String KEY_ItemCode = "ITEM_CODE";
 
     public static final String HTTP_RESPONSE_OK = "OK";
     public static final String HTTP_RESPONSE_FAIL = "FAIL";
@@ -32,4 +35,6 @@ public class Scan {
     public static final int HTTP_ACTION_CMD = 0;
     public static final int HTTP_ACTION_SHOPLIST = 1;
     public static final int HTTP_ACTION_ITEMLIST = 2;
+
+    public static final int REQ_CODE_SELECT_IMAGE = 1001;
 }

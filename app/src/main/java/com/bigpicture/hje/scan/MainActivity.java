@@ -3,7 +3,6 @@ package com.bigpicture.hje.scan;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import static com.common.Scan.KEY_ItemCode;
 import static com.common.Scan.awsUrl;
 import static com.common.Scan.localUrl;
 import static com.common.Scan.selectedUrl;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private RadioButton local, aws;
     private EditText editText_server;
-    private ItemDialog dialog;
+    private ItemInfoActivity dialog;
 
     //Override는 extends AppCompatActivity 상속했을때 꼭 구현되어야 하는 함수로 자동 추가됨
     //모든 activity 코드는 onCreate함수에서 시작 C의 main함수라고 보면됨
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Barcode", "Scan result : "+scanCode);
                 //토스트라고 화면하단에 잠깐 보여주고 없어지는거. 바코드 숫자 확인. 간단히 무슨 값 확인할때 좋음
                 Toast.makeText (context, "Barcode : "+ scanCode, Toast.LENGTH_LONG).show();
-                showItemDialog(scanCode);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,22 +116,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showItemDialog(String scanCode) {
-        dialog = new ItemDialog(context, scanCode);
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dia) {
-
-            }
-        });
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dia) {
-                //dialog가 사라질때 액션
-            }
-        });
-        dialog.show();
+        Intent intent = new Intent(context, ItemInfoActivity.class);
+        intent.putExtra(KEY_ItemCode,scanCode );
+        //지도 액티비티로 이동
+        startActivity(intent);
     }
-
-
-
 }

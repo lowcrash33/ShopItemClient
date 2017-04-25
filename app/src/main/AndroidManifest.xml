@@ -14,6 +14,7 @@
     <!-- unavailable in API 23 -->
     <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
@@ -87,6 +88,9 @@
             android:name=".ShopMapsActivity"
             android:label="@string/title_activity_shop_maps" />
         <activity android:name=".ItemListActivity"></activity>
+        <activity android:name=".ItemInfoActivity"
+            />
+
     </application>
 
 </manifest>
